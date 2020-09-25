@@ -31,7 +31,7 @@ function listening() {
 
 //endpoint for api-key
 function getOpenWeatherMapApiKey(request, response) {
-    console.log('Client requested OpenWeatherMap.org API key');
+    //console.log('Client requested OpenWeatherMap.org API key');
     response.send(process.env.OPENWEATHER_APIKEY);
 }
 
