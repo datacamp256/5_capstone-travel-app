@@ -1,0 +1,24 @@
+{
+  "name": "3_weather_journal_app",
+  "version": "1.0.0",
+  "description": "## Overview This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datacamp256/3_weather_journal_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/datacamp256/3_weather_journal_app/issues"
+  },
+  "homepage": "https://github.com/datacamp256/3_weather_journal_app#readme"
+}
