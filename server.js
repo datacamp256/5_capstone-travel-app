@@ -28,3 +28,18 @@ const server = app.listen(port, listening);
 function listening() {
     console.log(port);
 }
+
+//endpoint for api-key
+function getOpenWeatherMapApiKey(request, response) {
+    response.send(process.env.OPENWEATHER_APIKEY);
+}
+
+app.get('/openWeatherMapApiKey', getOpenWeatherMapApiKey);
+
+// Callback to debug
+
+// Initialize all route with a callback function
+
+// Callback function to complete GET '/all'
+
+// Post Route
