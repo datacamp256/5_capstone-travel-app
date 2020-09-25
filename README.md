@@ -1,5 +1,12 @@
 # Weather-Journal App Project
 
+## How to run
+The Weather-Journal app project needs a valid OpenWeatherMap API-key as environment-variable `OPENWEATHER_APIKEY` for the server app.
+```bash
+export OPENWEATHER_APIKEY=<your-key-here>
+node server.js
+``` 
+
 ## Overview
 This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
 
