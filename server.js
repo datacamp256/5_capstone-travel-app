@@ -35,6 +35,10 @@ function getOpenWeatherMapApiKey(request, response) {
 
 // Callback to debug
 function listening() {
+    if (!process.env.OPENWEATHER_APIKEY) {
+        console.log('ERROR: Environment varibale "OPENWEATHER_APIKEY" is missing.');
+        process.exit(1);
+    }
     console.log(`Server running on port ${port}`);
 }
 
