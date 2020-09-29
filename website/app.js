@@ -8,6 +8,14 @@ const DEFAULT_ZIP_CODE = 94040;
 let d = new Date();
 let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 
+function toEntry(temperature, date, comment) {
+    return {temperature: temperature, date: date, comment: comment};
+}
+
+function fromEntry(entry) {
+    return [entry.temperature, entry.date, entry.comment];
+}
+
 // Personal API Key for OpenWeatherMap API
 
 function loadOWMApiKey() {
@@ -30,7 +38,7 @@ document.getElementById(BUTTON_ID).addEventListener('click', generateEntry);
 function generateEntry() {
     loadTemperature(getZipCode())
         .then(function (temperature) {
-            postEntry(temperature, d, getUserResponse())
+            postEntry('/entries', toEntry(temperature, d, getUserResponse()));
         });
 }
 
@@ -51,15 +59,14 @@ function getZipCode() {
 }
 
 /* Function to POST data */
-async function postEntry(temperature, date, userResponse) {
-    console.log(`Sending T: ${temperature}, D: ${date}, R: ${userResponse}`);
-    const body = {temperature: temperature, date: date, comment: userResponse};
-    await fetch('/entries', {
+async function postEntry(url, entry) {
+    console.log(`Sending ${JSON.stringify(entry)}`);
+    await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(entry)
     });
 }
 
