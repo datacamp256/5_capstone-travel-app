@@ -71,7 +71,7 @@ app.post('/entries', addEntry);
 // Callback function to post an entry
 
 function addEntry(request, response) {
-    console.log(`Received Post Request for ${request.body.temperature}`);
+    console.log(`Received Post Request ${JSON.stringify(request.body)}`);
     if (!(request.body.hasOwnProperty('temperature') &&
         request.body.hasOwnProperty('date') &&
         request.body.hasOwnProperty('comment'))) {

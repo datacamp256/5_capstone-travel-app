@@ -11,7 +11,7 @@ let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 // Personal API Key for OpenWeatherMap API
 
 function loadOWMApiKey() {
-    return fetch('http://localhost:8080/openWeatherMapApiKey')
+    return fetch('/openWeatherMapApiKey')
         .then(function (response) {
             return response.text().then(function (text) {
                 return text;
@@ -52,7 +52,15 @@ function getZipCode() {
 
 /* Function to POST data */
 async function postEntry(temperature, date, userResponse) {
-    console.log(`T: ${temperature}, D: ${date}, R: ${userResponse}`);
+    console.log(`Sending T: ${temperature}, D: ${date}, R: ${userResponse}`);
+    const body = {temperature: temperature, date: date, comment: userResponse};
+    await fetch('/entries', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
 }
 
 function getUserResponse() {
