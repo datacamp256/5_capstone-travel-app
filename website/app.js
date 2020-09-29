@@ -1,6 +1,8 @@
 /* Global Variables */
 let owmApiKey;
 const BUTTON_ID = 'generate';
+const ZIP_INPUT_ID = 'zip';
+const DEFAULT_ZIP_CODE = 94040;
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
@@ -32,9 +34,14 @@ async function loadTemperature(zipCode) {
     return result;
 }
 
+function getZipCode() {
+    const zipCode = document.getElementById(ZIP_INPUT_ID).value;
+    return zipCode ? zipCode : DEFAULT_ZIP_CODE;
+}
+
 /* Function called by event listener */
 function generateEntry() {
-    const temperature = loadTemperature();
+    const temperature = loadTemperature(getZipCode());
     console.log(temperature);
 }
 
