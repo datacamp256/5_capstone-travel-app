@@ -2,6 +2,7 @@
 let owmApiKey;
 const BUTTON_ID = 'generate';
 const ZIP_INPUT_ID = 'zip';
+const USER_INPUT_ID = 'feelings';
 const DEFAULT_ZIP_CODE = 94040;
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -25,12 +26,22 @@ document.addEventListener('DOMContentLoaded', async function () {
 // Event listener to add function to existing HTML DOM element
 document.getElementById(BUTTON_ID).addEventListener('click', generateEntry);
 
+/* Function called by event listener */
+function generateEntry() {
+    loadTemperature(getZipCode())
+        .then(function (temperature) {
+            postEntry(temperature, d, getUserResponse())
+        });
+}
+
+/* Function to GET Web API Data*/
+
 async function loadTemperature(zipCode) {
     console.log(`Get the temperature for US ZIP ${zipCode} from openweathermap.org.`)
     let result = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=85051,us&appid=${owmApiKey}`)
         .then(response => response.json())
         .then(data => data.main.temp);
-    console.log(result);
+    console.log(`Temperature for ${zipCode} is ${result}.`);
     return result;
 }
 
@@ -39,15 +50,14 @@ function getZipCode() {
     return zipCode ? zipCode : DEFAULT_ZIP_CODE;
 }
 
-/* Function called by event listener */
-function generateEntry() {
-    const temperature = loadTemperature(getZipCode());
-    console.log(temperature);
+/* Function to POST data */
+async function postEntry(temperature, date, userResponse) {
+    console.log(`T: ${temperature}, D: ${date}, R: ${userResponse}`);
 }
 
-/* Function to GET Web API Data*/
-
-/* Function to POST data */
-
+function getUserResponse() {
+    const userResponse = document.getElementById(USER_INPUT_ID).value;
+    return userResponse ? userResponse : "I'm feeling a little cold...";
+}
 
 /* Function to GET Project Data */
