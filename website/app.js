@@ -58,7 +58,7 @@ function getZipCode() {
 
 /* Function to POST data */
 async function postEntry(url, entry) {
-    console.log(`Sending ${JSON.stringify(entry)}`);
+    console.log(`Sending ${JSON.stringify(entry)} to backend.`);
     await fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -73,12 +73,16 @@ function getUserResponse() {
 
 /* Function to GET Project Data */
 async function loadEntries() {
+    console.log('Loading all entries from backend');
     return fetch('/entries')
-        .then(function (response) {
-            return response.json();
-        });
+        .then(response => response.json());
 }
 
-function updateEntriesList(entries) {
-    console.log(entries);
+function updateEntriesList(jsonResponse) {
+    console.log(`Got ${jsonResponse.entries.length} entries from backend.`);
+    const latestEntry = jsonResponse.entries.slice(-1)[0];
+    document.getElementById('date').innerText = latestEntry.date;
+    document.getElementById('temp').innerText = latestEntry.temperature + ' °F';
+    document.getElementById('content').innerText = latestEntry.comment;
+
 }
