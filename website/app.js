@@ -44,7 +44,7 @@ function generateEntry() {
 
 async function loadTemperature(zipCode) {
     console.log(`Get the temperature for US ZIP ${zipCode} from openweathermap.org.`)
-    let result = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=85051,us&appid=${owmApiKey}`)
+    let result = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=85051,us&appid=${owmApiKey}&units=imperial`)
         .then(response => response.json())
         .then(data => data.main.temp);
     console.log(`Temperature for ${zipCode} is ${result}.`);
