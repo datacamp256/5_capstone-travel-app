@@ -21,7 +21,7 @@ function fromEntry(entry) {
 function loadOWMApiKey() {
     return fetch('/openWeatherMapApiKey')
         .then(function (response) {
-            return response.text().then(text => text);
+            return response.text();
         });
 }
 
@@ -75,9 +75,7 @@ function getUserResponse() {
 async function loadEntries() {
     return fetch('/entries')
         .then(function (response) {
-            return response.json().then(function (entries) {
-                return entries;
-            });
+            return response.json();
         });
 }
 
