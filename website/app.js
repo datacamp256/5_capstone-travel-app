@@ -21,9 +21,7 @@ function fromEntry(entry) {
 function loadOWMApiKey() {
     return fetch('/openWeatherMapApiKey')
         .then(function (response) {
-            return response.text().then(function (text) {
-                return text;
-            });
+            return response.text().then(text => text);
         });
 }
 
@@ -37,9 +35,9 @@ document.getElementById(BUTTON_ID).addEventListener('click', generateEntry);
 /* Function called by event listener */
 function generateEntry() {
     loadTemperature(getZipCode())
-        .then(function (temperature) {
-            postEntry('/entries', toEntry(temperature, d, getUserResponse()));
-        });
+        .then(temperature => postEntry('/entries', toEntry(temperature, d, getUserResponse())))
+        .then(() => loadEntries())
+        .then((entries) => updateEntriesList(entries));
 }
 
 /* Function to GET Web API Data*/
@@ -63,9 +61,7 @@ async function postEntry(url, entry) {
     console.log(`Sending ${JSON.stringify(entry)}`);
     await fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(entry)
     });
 }
@@ -76,3 +72,15 @@ function getUserResponse() {
 }
 
 /* Function to GET Project Data */
+async function loadEntries() {
+    return fetch('/entries')
+        .then(function (response) {
+            return response.json().then(function (entries) {
+                return entries;
+            });
+        });
+}
+
+function updateEntriesList(entries) {
+    console.log(entries);
+}
