@@ -4,9 +4,6 @@ const BUTTON_ID = 'generate';
 const ZIP_INPUT_ID = 'zip';
 const USER_INPUT_ID = 'feelings';
 const DEFAULT_ZIP_CODE = 94040;
-// Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 
 function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
@@ -35,7 +32,7 @@ document.getElementById(BUTTON_ID).addEventListener('click', generateEntry);
 /* Function called by event listener */
 function generateEntry() {
     loadTemperature(getZipCode())
-        .then(temperature => postEntry('/entries', toEntry(temperature, d, getUserResponse())))
+        .then(temperature => postEntry('/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
         .then(() => loadEntries())
         .then((entries) => updateEntriesList(entries));
 }
@@ -44,7 +41,7 @@ function generateEntry() {
 
 async function loadTemperature(zipCode) {
     console.log(`Get the temperature for US ZIP ${zipCode} from openweathermap.org.`)
-    let result = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=85051,us&appid=${owmApiKey}&units=imperial`)
+    let result = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${owmApiKey}&units=imperial`)
         .then(response => response.json())
         .then(data => data.main.temp);
     console.log(`Temperature for ${zipCode} is ${result}.`);
