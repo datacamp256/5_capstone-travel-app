@@ -16,18 +16,12 @@ function fromEntry(entry) {
 // Personal API Key for OpenWeatherMap API
 
 function loadOWMApiKey() {
-    return fetch('/openWeatherMapApiKey')
+    owmApiKey = fetch('/openWeatherMapApiKey')
         .then(function (response) {
             return response.text();
         });
 }
 
-document.addEventListener('DOMContentLoaded', async function () {
-    owmApiKey = await loadOWMApiKey();
-});
-
-// Event listener to add function to existing HTML DOM element
-document.getElementById(BUTTON_ID).addEventListener('click', generateEntry);
 
 /* Function called by event listener */
 function generateEntry() {
@@ -83,3 +77,6 @@ function updateEntriesList(jsonResponse) {
     document.getElementById('content').innerText = latestEntry.comment;
 
 }
+
+module.exports.loadOWMApiKey = loadOWMApiKey;
+module.exports.generateEntry = generateEntry;
