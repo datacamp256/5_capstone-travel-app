@@ -1,15 +1,11 @@
 /* Global Variables */
 let owmApiKey;
-const ZIP_INPUT_ID = 'zip';
+const ZIP_INPUT_ID = 'city-input';
 const USER_INPUT_ID = 'feelings';
 const DEFAULT_ZIP_CODE = 'Boston';
 
 function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
-}
-
-function fromEntry(entry) {
-    return [entry.temperature, entry.date, entry.comment];
 }
 
 // Personal API Key for OpenWeatherMap API
