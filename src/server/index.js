@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Setup empty JS object to act as endpoint for all routes
 projectData = {entries: []};
 
@@ -21,23 +24,33 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
-const port = 8080;
+const port = 8081;
 
 // Setup Server
 const server = app.listen(port, listening);
 
 //endpoint for api-key
-app.get('/openWeatherMapApiKey', getOpenWeatherMapApiKey);
-function getOpenWeatherMapApiKey(request, response) {
-    console.log('Client requested OpenWeatherMap.org API key');
-    response.type('application/json')
-    response.send(process.env.OPENWEATHER_APIKEY);
-}
+app.get('/loadApiKey/:application?', function (request, response) {
+    response.type('text/plain')
+    if (!request.query.application) {
+        console.log('parameter "application" not given');
+        response.status(400).send('URL-Parameter "application" is not specified.');
+        return;
+    }
+    switch (request.query.application.toLowerCase()) {
+        case 'geonames':
+            response.send(process.env.GEONAMES_USERNAME);
+            break;
+        default:
+            console.warn(`The application "${request.query.application}" is not known.`);
+            response.status(400).send(`The application "${request.query.application}" is not known.`);
+    }
+});
 
 // Callback to debug
 function listening() {
-    if (!process.env.OPENWEATHER_APIKEY) {
-        console.log('ERROR: Environment varibale "OPENWEATHER_APIKEY" is missing.');
+    if (!process.env.GEONAMES_USERNAME) {
+        console.log('ERROR: Environment varibale "GEONAMES_USERNAME" is missing.');
         process.exit(1);
     }
     console.log(`Server running on port ${port}`);

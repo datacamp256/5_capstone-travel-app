@@ -1,9 +1,8 @@
 /* Global Variables */
 let owmApiKey;
-const BUTTON_ID = 'generate';
 const ZIP_INPUT_ID = 'zip';
 const USER_INPUT_ID = 'feelings';
-const DEFAULT_ZIP_CODE = 94040;
+const DEFAULT_ZIP_CODE = 'Boston';
 
 function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
@@ -15,8 +14,8 @@ function fromEntry(entry) {
 
 // Personal API Key for OpenWeatherMap API
 
-function loadOWMApiKey() {
-    owmApiKey = fetch('/openWeatherMapApiKey')
+function loadApplicationKey() {
+    owmApiKey = fetch('http://localhost:8081/loadApiKey?application=geonames')
         .then(function (response) {
             return response.text();
         });
@@ -26,7 +25,7 @@ function loadOWMApiKey() {
 /* Function called by event listener */
 function generateEntry() {
     loadTemperature(getZipCode())
-        .then(temperature => postEntry('/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
+        .then(temperature => postEntry('http://localhost:8081/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
         .then(() => loadEntries())
         .then((entries) => updateEntriesList(entries));
 }
@@ -34,12 +33,18 @@ function generateEntry() {
 /* Function to GET Web API Data*/
 
 async function loadTemperature(zipCode) {
-    console.log(`Get the temperature for US ZIP ${zipCode} from openweathermap.org.`)
-    let result = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${owmApiKey}&units=imperial`)
-        .then(response => response.json())
-        .then(data => data.main.temp);
-    console.log(`Temperature for ${zipCode} is ${result}.`);
-    return result;
+    let key = await owmApiKey;
+    let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
+        .then(response => response.json());
+    let newVar = {
+        location: result.postalCodes[0].placeName,
+        lat: result.postalCodes[0].lat,
+        lng: result.postalCodes[0].lng,
+        region: result.postalCodes[0].adminName1,
+        country: result.postalCodes[0].countryCode
+    };
+    console.log(newVar);
+    return newVar;
 }
 
 function getZipCode() {
@@ -65,7 +70,7 @@ function getUserResponse() {
 /* Function to GET Project Data */
 async function loadEntries() {
     console.log('Loading all entries from backend');
-    return fetch('/entries')
+    return fetch('http://localhost:8081/entries')
         .then(response => response.json());
 }
 
@@ -78,5 +83,5 @@ function updateEntriesList(jsonResponse) {
 
 }
 
-module.exports.loadOWMApiKey = loadOWMApiKey;
+module.exports.loadApplicationKey = loadApplicationKey;
 module.exports.generateEntry = generateEntry;
