@@ -6,7 +6,7 @@
     "test": "jest",
     "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "refresh": "rm -rf dist;webpack --config webpack.dev.js;node src/server/server.js",
+    "refresh-server": "rm -rf dist;webpack --config webpack.dev.js;node src/server/server.js",
     "build-dev": "webpack --config webpack.dev.js",
     "run-dev": "webpack-dev-server --config webpack.dev.js --open"
   },
