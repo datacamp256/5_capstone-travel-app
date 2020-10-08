@@ -1,5 +1,7 @@
 import './styles/style.scss';
 import app from './js/app'
+import {loadGeonamesApiKey} from './js/apiKeys'
+
 const BUTTON_ID = 'generate';
 
 document.addEventListener('DOMContentLoaded', async function () {

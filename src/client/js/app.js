@@ -1,22 +1,10 @@
 /* Global Variables */
-let owmApiKey;
-const ZIP_INPUT_ID = 'city-input';
-const USER_INPUT_ID = 'feelings';
-const DEFAULT_ZIP_CODE = 'Boston';
+const CITY_INPUT = 'city-input';
+const DEFAULT_CITY = 'San Francisco';
 
 function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
 }
-
-// Personal API Key for OpenWeatherMap API
-
-function loadApplicationKey() {
-    owmApiKey = fetch('http://localhost:8081/loadApiKey?application=geonames')
-        .then(function (response) {
-            return response.text();
-        });
-}
-
 
 /* Function called by event listener */
 function generateEntry() {
@@ -29,7 +17,7 @@ function generateEntry() {
 /* Function to GET Web API Data*/
 
 async function loadTemperature(zipCode) {
-    let key = await owmApiKey;
+    let key = await Client.geonamesApiKey;
     let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
         .then(response => response.json());
     let newVar = {
@@ -44,8 +32,8 @@ async function loadTemperature(zipCode) {
 }
 
 function getZipCode() {
-    const zipCode = document.getElementById(ZIP_INPUT_ID).value;
-    return zipCode ? zipCode : DEFAULT_ZIP_CODE;
+    const zipCode = document.getElementById(CITY_INPUT).value;
+    return zipCode ? zipCode : DEFAULT_CITY;
 }
 
 /* Function to POST data */
@@ -79,5 +67,4 @@ function updateEntriesList(jsonResponse) {
 
 }
 
-module.exports.loadApplicationKey = loadApplicationKey;
 module.exports.generateEntry = generateEntry;
