@@ -1,13 +1,14 @@
 import './styles/style.scss';
-import app from './js/app'
-import {loadGeonamesApiKey} from './js/apiKeys'
+import {generateEntry} from './js/app'
+import {geonamesApiKey, getGeonamesApiKey,loadGeonamesApiKey} from './js/apiKeys'
+import {initCountDown} from './js/countdown';
 
 const BUTTON_ID = 'generate';
 
 document.addEventListener('DOMContentLoaded', async function () {
-    console.log('page load complete');
-    await app.loadApplicationKey();
-
+    loadGeonamesApiKey();
 });
 
-document.getElementById(BUTTON_ID).addEventListener('click', app.generateEntry);
+document.getElementById(BUTTON_ID).addEventListener('click', event => generateEntry(event));
+
+export {geonamesApiKey, initCountDown,getGeonamesApiKey}

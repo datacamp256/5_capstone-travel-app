@@ -1,13 +1,15 @@
 /* Global Variables */
+
 const CITY_INPUT = 'city-input';
-const DEFAULT_CITY = 'San Francisco';
 
 function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
 }
 
 /* Function called by event listener */
-function generateEntry() {
+function generateEntry(event) {
+    event.preventDefault();
+    Client.initCountDown();
     loadTemperature(getZipCode())
         .then(temperature => postEntry('http://localhost:8081/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
         .then(() => loadEntries())
@@ -17,7 +19,8 @@ function generateEntry() {
 /* Function to GET Web API Data*/
 
 async function loadTemperature(zipCode) {
-    let key = await Client.geonamesApiKey;
+    let key =  Client.getGeonamesApiKey();
+    console.log(key);
     let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
         .then(response => response.json());
     let newVar = {
@@ -33,7 +36,7 @@ async function loadTemperature(zipCode) {
 
 function getZipCode() {
     const zipCode = document.getElementById(CITY_INPUT).value;
-    return zipCode ? zipCode : DEFAULT_CITY;
+    return zipCode ? zipCode : 'San Francisco';
 }
 
 /* Function to POST data */

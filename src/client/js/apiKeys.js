@@ -1,11 +1,12 @@
 let geonamesApiKey;
 
-function loadGeonamesApiKey() {
-    geonamesApiKey = fetch('http://localhost:8081/loadApiKey?application=geonames')
-        .then(function (response) {
-            return response.text();
-        });
+async function loadGeonamesApiKey() {
+   await fetch('http://localhost:8081/loadApiKey?application=geonames')
+        .then(response => response.text())
+        .then(text => geonamesApiKey = text);
+    console.log(geonamesApiKey);
 }
+const getGeonamesApiKey = () => geonamesApiKey;
 
 module.exports.loadGeonamesApiKey = loadGeonamesApiKey;
-module.exports.geonamesApiKey = geonamesApiKey;
+module.exports.getGeonamesApiKey = getGeonamesApiKey;
