@@ -9,7 +9,7 @@ function toEntry(temperature, date, comment) {
 /* Function called by event listener */
 function generateEntry(event) {
     event.preventDefault();
-    Client.initCountDown();
+    Client.countdown_initCountDown();
     loadTemperature(getZipCode())
         .then(temperature => postEntry('http://localhost:8081/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
         .then(() => loadEntries())
@@ -19,7 +19,7 @@ function generateEntry(event) {
 /* Function to GET Web API Data*/
 
 async function loadTemperature(zipCode) {
-    let key =  Client.getGeonamesApiKey();
+    let key =  Client.backend_getGeonamesApiKey();
     let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
         .then(response => response.json());
     let newVar = {
@@ -49,8 +49,8 @@ async function postEntry(url, entry) {
 }
 
 function getUserResponse() {
-    const userResponse = document.getElementById(USER_INPUT_ID).value;
-    return userResponse ? userResponse : "I'm feeling a little cold...";
+    // const userResponse = document.getElementById(USER_INPUT_ID).value;
+    // return userResponse ? userResponse : "I'm feeling a little cold...";
 }
 
 /* Function to GET Project Data */
