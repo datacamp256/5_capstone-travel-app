@@ -1,9 +1,6 @@
 body {
-    background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
 
-#app {
     display: grid;
     grid-auto-rows: minmax(150px, auto);
     /* grid-template-columns:  */
@@ -14,82 +11,101 @@ body {
     grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+
+    form { //.holder
+        label {
+            display: block;
+            font-size: 27px;
+        }
+
+        .form-pair {
+            label {
+            }
+
+            input {
+                display: block;
+                height: 60px;
+                width: 320px;
+                background: #22b2da;
+                color: #f0d43a;
+                font-size: 20px;
+                font-family: 'Oswald', sans-serif;
+                border: none;
+            }
+
+            #city-input {
+            }
+
+            #start-input {
+            }
+
+        }
+
+        button { //generate
+            width: 400px;
+            height: 2em;
+            background: #3b4a6b;
+            color: #f0d43a;
+            font-size: 26px;
+            font-family: 'Oswald', sans-serif;
+            border: none;
+            box-shadow: 2px 4px 5px #444;
+        }
+
+        #error-label {
+            display: block;
+        }
+    }
+
+    header {
+        h1 { //#city
+            font-size: 36px;
+        }
+
+        h2 { //#countdown
+        }
+    }
+
+    main {
+
+        #date {
+        }
+
+        #weather-box {
+            img { //#weather-icon and umbrella
+                width: 1em;
+                margin-right: 0.5em;
+            }
+
+            #temperature {
+            }
+
+            #weather-icon {
+                width: 2em;
+            }
+        }
+
+        textarea {
+            background: #22b2da;
+            color: #f0d43a;
+            font-size: 20px;
+            font-family: 'Oswald', sans-serif;
+        }
+        #wikipedia {
+            display: none;
+        }
+
+        #picture {
+            display: none;
+        }
+    }
+
+    footer {
+
+    }
 }
 
-#error-label {
-    display: none;
-}
 
-.holder {
-
-}
-
-.entry {
-    background: rgba(59, 74, 107, .4);
-}
-
-#entryHolder {
-
-}
-
-#date {
-
-}
-
-#temp {
-
-}
-
-#content {
-
-}
-
-.headline {
-
-}
-
-.title {
-
-}
-
-/*  Basic Styling To Override Default For Basic HTML Elements */
-label {
-    display: block;
-    font-size: 27px;
-}
-
-input {
-    display: block;
-    height: 60px;
-    width: 320px;
-    background: #22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-}
-
-button {
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-    box-shadow: 2px 4px 5px #444;
-}
-
-h1 {
-    font-size: 36px;
-}
-
-textarea {
-    background: #22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
 
 /* Reset style for HTML element on active to have no border*/
 input:focus,

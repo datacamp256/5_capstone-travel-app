@@ -8,28 +8,33 @@
   <link href="/src/client/media/explore-24px.svg" rel="icon" type="image/png"/>
 </head>
 <body>
-<div id="app">
-  <form class="holder zip">
-    <div class="form-pair"><label for="city-input">Where do you want to go?</label>
-      <input id="city-input" placeholder="Enter a city here" type="text" value="Mountain View, CA"></div>
-    <div class="form-pair"><label for="start-input">Start date:</label>
-      <input type="date" id="start-input" name="trip-start" placeholder="yyyy-mm-dd" value="2020-10-14"></div>
-    <button id="generate" type="submit">Plan</button>
-    <label id="error-label"></label>
-  </form>
-  <header><label>Mountain View, CA</label><label id="countdown">127 days to go</label></header>
-  <main>
-    <div id="date">51.17.2020</div>
-    <div id="weather-box">
-      <img id="weather-icon" src="https://www.weatherbit.io/static/img/icons/c02d.png" alt="Scattered clouds">
-      <div id="temperature">12°C</div>
-      <div id="pop"><img src="src/client/media/Font_Awesome_5_solid_umbrella.svg"
-                         alt="Probability of Precipitation"/><span>1 %</span></div>
-    </div>
-    <div>wikipedia</div>
-    <div>Picture</div>
-  </main>
-</div>
+<form class="holder">
+  <div class="form-pair">
+    <label for="city-input">Where do you want to go?</label>
+    <input id="city-input" placeholder="Enter a city here" type="text" value="Mountain View, CA">
+  </div>
+  <div class="form-pair">
+    <label for="start-input">Start date:</label>
+    <input type="date" id="start-input" name="trip-start" placeholder="yyyy-mm-dd" value="2020-10-14">
+  </div>
+  <button id="generate" type="submit">Plan</button>
+  <label id="error-label">Error here</label>
+</form>
+<header>
+  <h1 id="city">Mountain View, CA</h1>
+  <h2 id="countdown">127 days to go</h2>
+</header>
+<main>
+  <div id="date">51.17.2020</div>
+  <div id="weather-box">
+    <img id="weather-icon" src="https://www.weatherbit.io/static/img/icons/c02d.png" alt="Scattered clouds">
+    <div id="temperature">12°C</div>
+    <div id="pop"><img src="src/client/media/Font_Awesome_5_solid_umbrella.svg"
+                       alt="Probability of Precipitation"/><span>1 %</span></div>
+  </div>
+  <div id="wikipedia">wikipedia</div>
+  <div id="picture">Picture</div>
+</main>
 <footer>Background picture: George Hodan (publicdomainpictures.net)</footer>
 </body>
 </html>
