@@ -1,5 +1,6 @@
 let geonamesApiKey;
 let weatherbitApiKey;
+let pixabyApiKey;
 //public functions here
 
 const tmpGeoInformationData = {
@@ -727,17 +728,17 @@ const temporalForecast = {
     "state_code": "CA"
 };
 
-async function loadGeonamesApiKey() {
-    const promisedKeys = ['geonames', 'weatherbit'].map(async serviceId =>
+async function loadApiKeys() {
+    const promisedKeys = ['geonames', 'weatherbit','pixaby'].map(async serviceId =>
         fetch('http://localhost:8081/loadApiKey?application=' + serviceId)
             .then(response => response.text())
     );
-    [geonamesApiKey, weatherbitApiKey] = await Promise.all(promisedKeys);
+    [geonamesApiKey, weatherbitApiKey, pixabyApiKey] = await Promise.all(promisedKeys);
 }
 
-async function loadGeoInformation(zipCode) {
-    const url = createGeoInformationRequestAddress(zipCode);
-    //const result = await fetch(url).then(response => response.json()); //TODO replace later
+async function loadGeoInformation(city) {
+    const url = createGeoInformationRequestAddress(city);
+    // const result = await fetch(url).then(response => response.json()); //TODO replace later
     const result = tmpGeoInformationData;
     console.log(result);
     return extractLocationProperties(result);
@@ -792,6 +793,6 @@ function createGeoInformationRequestAddress(zipCode) {
 }
 
 // exports
-module.exports.backend_loadGeonamesApiKey = loadGeonamesApiKey;
-module.exports.backend_loadGeoInformation = loadGeoInformation;
+module.exports.fetcher_loadApiKeys = loadApiKeys;
+module.exports.fetcher_loadGeoInformation = loadGeoInformation;
 module.exports.fetcher_loadWeatherForecast = loadWeatherForecast;
