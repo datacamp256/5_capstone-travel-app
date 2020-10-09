@@ -1,33 +1,26 @@
 /* Global Variables */
 
-const CITY_INPUT = 'city-input';
-
 function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
 }
 
 /* Function called by event listener */
-function generateEntry(event) {
+async function generateEntry(event) {
     event.preventDefault();
     Client.dom_hideError();
-    try{
+    try {
         Client.countdown_initCountDown();
-    } catch (error){
+    } catch (error) {
         Client.dom_displayError(error);
     }
-    Client.backend_loadGeoInformation(getZipCode())
-        .then(temperature => postEntry('http://localhost:8081/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
-        .then(() => loadEntries())
-        .then((entries) => updateEntriesList(entries));
+    const locationProperties = await Client.backend_loadGeoInformation(getCityName());
+    console.log(locationProperties);
+    const weather = await Client.fetcher_loadWeatherForecast(locationProperties.lat, locationProperties.lng);
+    console.log(weather);
 }
 
-/* Function to GET Web API Data*/
-
-
-
-function getZipCode() {
-    const zipCode = document.getElementById(CITY_INPUT).value;
-    return zipCode ;
+function getCityName() {
+    return document.getElementById('city-input').value;
 }
 
 /* Function to POST data */

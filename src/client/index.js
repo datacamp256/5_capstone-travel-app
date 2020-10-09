@@ -2,7 +2,7 @@ import './styles/style.scss';
 import {generateEntry} from './js/app'
 import {countdown_initCountDown} from './js/countdown';
 import {dom_displayError, dom_hideError, dom_setCountdown} from './js/domUpdater'
-import {backend_getGeonamesApiKey, backend_loadGeoInformation, backend_loadGeonamesApiKey} from './js/fetcher'
+import { backend_loadGeoInformation, backend_loadGeonamesApiKey, fetcher_loadWeatherForecast} from './js/fetcher'
 
 const BUTTON_ID = 'generate';
 
@@ -14,8 +14,8 @@ document.getElementById(BUTTON_ID).addEventListener('click', event => generateEn
 
 export {
     countdown_initCountDown,
-    backend_getGeonamesApiKey,
     backend_loadGeoInformation,
+    fetcher_loadWeatherForecast,
     dom_setCountdown,
     dom_displayError,
     dom_hideError
