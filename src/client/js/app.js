@@ -20,7 +20,6 @@ function generateEntry(event) {
 
 async function loadTemperature(zipCode) {
     let key =  Client.getGeonamesApiKey();
-    console.log(key);
     let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
         .then(response => response.json());
     let newVar = {
