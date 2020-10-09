@@ -80,7 +80,7 @@ function createPixabyRequestAddress(name) {
         'min_height=100',
         'savesearch=true',
         'order=popular',
-        'per_page=10',//Accepted values: 3 - 200
+        'per_page=20',//Accepted values: 3 - 200, default 20
         'pretty=false'
     ];
     return 'https://pixabay.com/api/?' + parameters.join('&');
