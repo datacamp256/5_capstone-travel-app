@@ -4,19 +4,26 @@ function toEntry(temperature, date, comment) {
     return {temperature: temperature, date: date, comment: comment};
 }
 
+async function getWeatherOfTheDay(locationProperties) {
+    const allWeather = await Client.fetcher_loadWeatherForecast(locationProperties.lat, locationProperties.lng);
+    return allWeather.days.filter(day => day.valid_date === document.getElementById('start-input').value).shift();
+}
+
 /* Function called by event listener */
 async function generateEntry(event) {
     event.preventDefault();
-    Client.dom_hideError();
+        Client.dom_hideError();
+    let locationProperties;
+    let weather;
     try {
         Client.countdown_initCountDown();
+        locationProperties   = await Client.backend_loadGeoInformation(getCityName());
+        weather = await getWeatherOfTheDay(locationProperties);
     } catch (error) {
         Client.dom_displayError(error);
     }
-    const locationProperties = await Client.backend_loadGeoInformation(getCityName());
-    console.log(locationProperties);
-    const weather = await Client.fetcher_loadWeatherForecast(locationProperties.lat, locationProperties.lng);
-    console.log(weather);
+    console.log('app.generateEntry',locationProperties);
+    console.log('app.generateEntry',weather);
 }
 
 function getCityName() {
