@@ -8,5 +8,5 @@ async function loadGeonamesApiKey() {
 }
 const getGeonamesApiKey = () => geonamesApiKey;
 
-module.exports.loadGeonamesApiKey = loadGeonamesApiKey;
-module.exports.getGeonamesApiKey = getGeonamesApiKey;
+module.exports.backend_loadGeonamesApiKey = loadGeonamesApiKey;
+module.exports.backend_getGeonamesApiKey = getGeonamesApiKey;

@@ -21,4 +21,4 @@ function updateCountdown() {
 }
 
 
-module.exports.initCountDown = initCountDown;
+module.exports.countdown_initCountDown = initCountDown;
