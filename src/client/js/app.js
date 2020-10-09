@@ -17,13 +17,14 @@ async function generateEntry(event) {
     let weather;
     try {
         Client.countdown_initCountDown();
-        locationProperties   = await Client.backend_loadGeoInformation(getCityName());
+        locationProperties = await Client.backend_loadGeoInformation(getCityName());
         weather = await getWeatherOfTheDay(locationProperties);
     } catch (error) {
         Client.dom_displayError(error);
     }
-    console.log('app.generateEntry',locationProperties);
-    console.log('app.generateEntry',weather);
+    console.log('app.generateEntry', locationProperties);
+    console.log('app.generateEntry', weather);
+    Client.dom_displayWeather(weather);
 }
 
 function getCityName() {

@@ -758,6 +758,7 @@ function extractWeatherForecast(weatherbitForecast) {
        forecasts.days.push({
            valid_date: day.valid_date,
            icon: day.weather.icon,
+           description: day.weather.description,
            temp: day.temp,
            probability_of_precipitation: day.pop,
            wind_spd: day.wind_spd,
