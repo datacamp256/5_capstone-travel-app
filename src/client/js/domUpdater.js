@@ -8,12 +8,11 @@ function displayError(error){
     const errorLabel = document.getElementById('error-label');
     errorLabel.innerText=error;
     errorLabel.style.display = 'block';
-    console.log(error);
+    console.error(error);
 }
 
 function hideError(){
     document.getElementById('error-label').style.display = 'none';
-    console.log('hide error');
 }
 
 // private functions here

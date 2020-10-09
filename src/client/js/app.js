@@ -15,7 +15,7 @@ function generateEntry(event) {
     } catch (error){
         Client.dom_displayError(error);
     }
-    loadTemperature(getZipCode())
+    Client.backend_loadGeoInformation(getZipCode())
         .then(temperature => postEntry('http://localhost:8081/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
         .then(() => loadEntries())
         .then((entries) => updateEntriesList(entries));
@@ -23,20 +23,7 @@ function generateEntry(event) {
 
 /* Function to GET Web API Data*/
 
-async function loadTemperature(zipCode) {
-    let key =  Client.backend_getGeonamesApiKey();
-    let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
-        .then(response => response.json());
-    let newVar = {
-        location: result.postalCodes[0].placeName,
-        lat: result.postalCodes[0].lat,
-        lng: result.postalCodes[0].lng,
-        region: result.postalCodes[0].adminName1,
-        country: result.postalCodes[0].countryCode
-    };
-    console.log(newVar);
-    return newVar;
-}
+
 
 function getZipCode() {
     const zipCode = document.getElementById(CITY_INPUT).value;
@@ -46,11 +33,11 @@ function getZipCode() {
 /* Function to POST data */
 async function postEntry(url, entry) {
     console.log(`Sending ${JSON.stringify(entry)} to backend.`);
-    await fetch(url, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(entry)
-    });
+    // await fetch(url, {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify(entry)
+    // });
 }
 
 function getUserResponse() {
@@ -67,10 +54,10 @@ async function loadEntries() {
 
 function updateEntriesList(jsonResponse) {
     console.log(`Got ${jsonResponse.entries.length} entries from backend.`);
-    const latestEntry = jsonResponse.entries.slice(-1)[0];
-    document.getElementById('date').innerText = latestEntry.date;
-    document.getElementById('temp').innerText = latestEntry.temperature + ' °F';
-    document.getElementById('content').innerText = latestEntry.comment;
+    // const latestEntry = jsonResponse.entries.slice(-1)[0];
+    // document.getElementById('date').innerText = latestEntry.date;
+    // document.getElementById('temp').innerText = latestEntry.temperature + ' °F';
+    // document.getElementById('content').innerText = latestEntry.comment;
 
 }
 
