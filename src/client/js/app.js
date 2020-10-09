@@ -27,7 +27,7 @@ function generateEntry(event) {
 
 function getZipCode() {
     const zipCode = document.getElementById(CITY_INPUT).value;
-    return zipCode ? zipCode : 'San Francisco';
+    return zipCode ;
 }
 
 /* Function to POST data */
