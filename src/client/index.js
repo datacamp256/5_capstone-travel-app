@@ -1,7 +1,8 @@
 import './styles/style.scss';
 import {generateEntry} from './js/app'
-import {geonamesApiKey, getGeonamesApiKey,loadGeonamesApiKey} from './js/apiKeys'
+import {geonamesApiKey, getGeonamesApiKey, loadGeonamesApiKey} from './js/apiKeys'
 import {initCountDown} from './js/countdown';
+import {setCountdown} from './js/domUpdater'
 
 const BUTTON_ID = 'generate';
 
@@ -11,4 +12,4 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 document.getElementById(BUTTON_ID).addEventListener('click', event => generateEntry(event));
 
-export {geonamesApiKey, initCountDown,getGeonamesApiKey}
+export {geonamesApiKey, initCountDown, getGeonamesApiKey, setCountdown}
