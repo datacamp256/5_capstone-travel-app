@@ -11,7 +11,18 @@ const getGeonamesApiKey = () => geonamesApiKey;
 
 async function loadGeoInformation(zipCode) {
    let key =  Client.backend_getGeonamesApiKey();
-   let result = await fetch(`http://api.geonames.org/postalCodeSearchJSON?username=${key}&placename=${encodeURIComponent(zipCode)}&maxRows=10&style=MEDIUM`)
+   const parameters = [
+       `username=${key}`,
+      `placename=${encodeURIComponent(zipCode)}`,
+       'maxRows=10',
+       'style=MEDIUM',
+       'countryBias=US',
+       'countryBias=DE',
+       'countryBias=IN',
+   ];
+   let url ='http://api.geonames.org/postalCodeSearchJSON?'+parameters.join('&');
+   console.log(url);
+   let result = await fetch(url)
        .then(response => response.json());
    let newVar = {
       location: result.postalCodes[0].placeName,
