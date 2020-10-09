@@ -1,8 +1,8 @@
 import './styles/style.scss';
 import {generateEntry} from './js/app'
 import {countdown_initCountDown} from './js/countdown';
-import {dom_displayError, dom_hideError, dom_setCountdown, dom_displayWeather} from './js/domUpdater'
-import { fetcher_loadGeoInformation, fetcher_loadApiKeys, fetcher_loadWeatherForecast} from './js/fetcher'
+import {dom_displayError, dom_hideError, dom_setCountdown, dom_displayWeather,dom_displayLocationImage} from './js/domUpdater'
+import { fetcher_loadGeoInformation, fetcher_loadApiKeys, fetcher_loadWeatherForecast, fetcher_loadPixabyImageUrl} from './js/fetcher'
 
 const BUTTON_ID = 'generate';
 
@@ -16,8 +16,10 @@ export {
     countdown_initCountDown,
     fetcher_loadGeoInformation,
     fetcher_loadWeatherForecast,
+    fetcher_loadPixabyImageUrl,
     dom_setCountdown,
     dom_displayError,
     dom_hideError,
-    dom_displayWeather
+    dom_displayWeather,
+    dom_displayLocationImage
 }

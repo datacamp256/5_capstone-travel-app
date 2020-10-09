@@ -29,6 +29,16 @@ function displayWeather(weather) {
     } // else{// no weather available - keep box invisible}
 }
 
+function dom_displayLocationImage(imageUrl) {
+    if(imageUrl){
+        let img = document.getElementById('picture');
+        img.src = imageUrl;
+        img.style.display='block';
+    } else{
+        img.style.display='none';
+    }
+}
+
 // private functions here
 
 // exports
@@ -36,3 +46,4 @@ module.exports.dom_setCountdown = setCountdown;
 module.exports.dom_displayWeather = displayWeather;
 module.exports.dom_displayError = displayError;
 module.exports.dom_hideError = hideError;
+module.exports.dom_displayLocationImage = dom_displayLocationImage;
