@@ -27,7 +27,7 @@ app.use(express.static('website'));
 const port = 8081;
 
 // Setup Server
-const server = app.listen(port, listening);
+app.listen(port, listening);
 
 //endpoint for api-key
 app.get('/loadApiKey/:application?', function (request, response) {
@@ -40,6 +40,9 @@ app.get('/loadApiKey/:application?', function (request, response) {
     switch (request.query.application.toLowerCase()) {
         case 'geonames':
             response.send(process.env.GEONAMES_USERNAME);
+            break;
+        case 'weatherbit':
+            response.send(process.env.WEATHERBIT_USERNAME);
             break;
         default:
             console.warn(`The application "${request.query.application}" is not known.`);
