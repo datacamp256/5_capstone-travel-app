@@ -27,12 +27,19 @@ async function loadWeatherForecast(lat, lng) {
     return extractWeatherForecast(weatherbitForecast);
 }
 
-async function loadPixabyImageUrl(names) {
-    const url = createPixabyRequestAddress(names);
-    console.log(url);
+async function loadPixabyImageUrl(searchStrings) {
+    if (searchStrings.length === 0) {
+        return 'NO_IMAGE';
+    }
+    const url = createPixabyRequestAddress(searchStrings.shift());
     let response = await fetch(url).then(response => response.json());
-    return (response.hits)[Math.floor(Math.random() * response.hits.length)].webformatURL;
+    if (response.totalHits !== 0) {
+        return response.hits[Math.floor(Math.random() * response.hits.length)].webformatURL;
+    } else {
+        return loadPixabyImageUrl(searchStrings);
+    }
 }
+
 
 // private functions here
 
@@ -55,10 +62,10 @@ function extractWeatherForecast(weatherbitForecast) {
 function extractLocationProperties(result) {
     return {
         location: result.postalCodes[0].placeName,
-        lat: result.postalCodes[0].lat,
-        lng: result.postalCodes[0].lng,
         region: result.postalCodes[0].adminName1,
-        country: result.postalCodes[0].countryCode
+        country: result.postalCodes[0].countryCode,
+        lng: result.postalCodes[0].lng,
+        lat: result.postalCodes[0].lat
     };
 }
 

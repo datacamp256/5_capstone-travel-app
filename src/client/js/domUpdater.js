@@ -30,12 +30,12 @@ function displayWeather(weather) {
 }
 
 function dom_displayLocationImage(imageUrl) {
-    if(imageUrl){
-        let img = document.getElementById('picture');
+    let img = document.getElementById('picture');
+    if (imageUrl === 'NO_IMAGE') {
+        img.style.display = 'none';
+    } else {
         img.src = imageUrl;
-        img.style.display='block';
-    } else{
-        img.style.display='none';
+        img.style.display = 'block';
     }
 }
 

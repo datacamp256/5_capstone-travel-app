@@ -1,4 +1,6 @@
-/* Global Variables */
+const countries = require('i18n-iso-countries');
+countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
+
 async function getWeatherOfTheDay(locationProperties) {
     const allWeather = await Client.fetcher_loadWeatherForecast(locationProperties.lat, locationProperties.lng);
     return allWeather.days.filter(day => day.valid_date === document.getElementById('start-input').value).shift();
@@ -7,7 +9,7 @@ async function getWeatherOfTheDay(locationProperties) {
 /* Function called by event listener */
 async function generateEntry(event) {
     event.preventDefault();
-        Client.dom_hideError();
+    Client.dom_hideError();
     let locationProperties;
     let weather;
     let imageUrl;
@@ -15,7 +17,10 @@ async function generateEntry(event) {
         Client.countdown_initCountDown();
         locationProperties = await Client.fetcher_loadGeoInformation(getCityName());
         weather = await getWeatherOfTheDay(locationProperties);
-        imageUrl = await Client.fetcher_loadPixabyImageUrl(locationProperties.location);
+        imageUrl = await Client.fetcher_loadPixabyImageUrl([
+            locationProperties.location,
+            locationProperties.region,
+            countries.getName(locationProperties.country, 'en')]);
     } catch (error) {
         Client.dom_displayError(error);
     }
