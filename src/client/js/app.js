@@ -9,7 +9,12 @@ function toEntry(temperature, date, comment) {
 /* Function called by event listener */
 function generateEntry(event) {
     event.preventDefault();
-    Client.countdown_initCountDown();
+    Client.dom_hideError();
+    try{
+        Client.countdown_initCountDown();
+    } catch (error){
+        Client.dom_displayError(error);
+    }
     loadTemperature(getZipCode())
         .then(temperature => postEntry('http://localhost:8081/entries', toEntry(temperature, new Date().toLocaleString(), getUserResponse())))
         .then(() => loadEntries())
