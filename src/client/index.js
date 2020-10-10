@@ -11,17 +11,15 @@ import {
 } from './js/domUpdater'
 import {
     fetcher_loadApiKeys,
+    fetcher_loadCountryInformation,
     fetcher_loadGeoInformation,
     fetcher_loadPixabayImageUrl,
-    fetcher_loadWeatherForecast,
-    fetcher_loadCountryInformation
+    fetcher_loadWeatherForecast
 } from './js/fetcher'
 
 const BUTTON_ID = 'generate';
 
-document.addEventListener('DOMContentLoaded', async function () {
-    await fetcher_loadApiKeys();
-});
+document.addEventListener('DOMContentLoaded', async () => await fetcher_loadApiKeys());
 
 document.getElementById(BUTTON_ID).addEventListener('click', event => generateEntry(event));
 

@@ -30,7 +30,7 @@ const port = 8081;
 app.listen(port, listening);
 
 //endpoint for api-key
-app.get('/loadApiKey/:application?', function (request, response) {
+app.get('/loadApiKey/:application?', (request, response) => {
     response.type('text/plain')
     if (!request.query.application) {
         console.log('parameter "application" not given');
@@ -67,7 +67,7 @@ function listening() {
 // Initialize all route with a callback function
 app.get('/all', receiveAllProjectData);
 app.get('/entries', receiveAllProjectData);
-app.get('/entries/:id', function (request, response) {
+app.get('/entries/:id', (request, response) => {
     console.log("Client requested entry no. " + request.params.id);
     const entry = projectData.entries[request.params.id]
     if (!entry) {
