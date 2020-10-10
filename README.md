@@ -1,17 +1,12 @@
-# Weather-Journal App Project
+# TODO
+## Extensions
+You have suggested some really useful improvements. 
 
-## How to run
-The Weather-Journal app project needs a valid OpenWeatherMap API-key as environment-variable `OPENWEATHER_APIKEY` for the server app.
-```bash
-export OPENWEATHER_APIKEY=<your-key-here>
-node server.js
-``` 
+###Pull in an image for the country from Pixabay API when the entered location brings up no results
+That was quite fun. However I could not find any real locations which could be found in geonames but not in pixabay. But in Tests everything worked fine.
 
-## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+###Incorporate icons into forecast.
+The weatherbit api seemed to FORCE you to use their icons by giving the icon-id in the API-response. That was a low hanging fruit.
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
-
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+###Integrate the REST Countries API to pull in data for the country being visited.
+There's a TODO yet

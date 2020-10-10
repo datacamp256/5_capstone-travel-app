@@ -13,7 +13,8 @@ import {
     fetcher_loadApiKeys,
     fetcher_loadGeoInformation,
     fetcher_loadPixabayImageUrl,
-    fetcher_loadWeatherForecast
+    fetcher_loadWeatherForecast,
+    fetcher_loadCountryInformation
 } from './js/fetcher'
 
 const BUTTON_ID = 'generate';
@@ -29,6 +30,7 @@ export {
     fetcher_loadGeoInformation,
     fetcher_loadWeatherForecast,
     fetcher_loadPixabayImageUrl,
+    fetcher_loadCountryInformation,
     dom_setCountdown,
     dom_displayError,
     dom_hideError,

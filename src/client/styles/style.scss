@@ -62,6 +62,12 @@ body {
         header {
             h1 { //#city
                 font-size: 36px;
+                #flag{
+                   height: 0.5em;
+                    vertical-align: 0.3em;
+                    margin-right: 0.2em;
+                }
+                #city{}
             }
 
             h2 { //#countdown

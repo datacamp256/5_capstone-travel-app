@@ -15,16 +15,18 @@ async function loadApiKeys() {
 async function loadGeoInformation(city) {
     const url = createGeoInformationRequestAddress(city);
     const result = await fetch(url).then(response => response.json());
-    if (result.postalCodes.length === 0) {
-        throw `Could not find a city with the name '${city}'`;
-    }
-    return extractLocationProperties(result);
+    return extractLocationProperties(result.postalCodes, city);
 }
 
 async function loadWeatherForecast(lat, lng) {
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${weatherbitApiKey}&lat=${lat}&lon=${lng}`;
     const weatherbitForecast = await fetch(url).then(response => response.json());
     return extractWeatherForecast(weatherbitForecast);
+}
+
+async function loadCountryInformation(countryCode) {
+    const url = `https://restcountries.eu/rest/v2/alpha/${countryCode}?fields=name;subregion;currencies;flag`;
+    return await fetch(url).then(response => response.json());
 }
 
 async function loadPixabayImageUrl(searchStrings) {
@@ -59,13 +61,21 @@ function extractWeatherForecast(weatherbitForecast) {
     return forecasts;
 }
 
-function extractLocationProperties(result) {
+function extractLocationProperties(postalCodes, cityName) {
+    if (postalCodes.length === 0) {
+        throw `Could not find a city with the name '${cityName}'`;
+    }
+    if (postalCodes[0].placeName === 'APO AA') {//Sometimes Geonames sends weird results
+        console.log('Shift!');
+        postalCodes.shift();
+        return extractLocationProperties(postalCodes, cityName);
+    }
     return {
-        location: result.postalCodes[0].placeName,
-        region: result.postalCodes[0].adminName1,
-        country: result.postalCodes[0].countryCode,
-        lng: result.postalCodes[0].lng,
-        lat: result.postalCodes[0].lat
+        location: postalCodes[0].placeName,
+        region: postalCodes[0].adminName1,
+        country: postalCodes[0].countryCode,
+        lng: postalCodes[0].lng,
+        lat: postalCodes[0].lat
     };
 }
 
@@ -104,3 +114,5 @@ module.exports.fetcher_loadApiKeys = loadApiKeys;
 module.exports.fetcher_loadGeoInformation = loadGeoInformation;
 module.exports.fetcher_loadWeatherForecast = loadWeatherForecast;
 module.exports.fetcher_loadPixabayImageUrl = loadPixabayImageUrl;
+module.exports.fetcher_loadCountryInformation = loadCountryInformation;
+

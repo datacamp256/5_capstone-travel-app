@@ -11,10 +11,11 @@ function displayError(error) {
     console.error(error);
 }
 
-function updateResult(visible, city, date) {
-    if(visible){
-        document.getElementById('city').innerText=city;
-        document.getElementById('date').innerText=date;
+function updateResult(visible, city, date, countryInformation) {
+    if (visible) {
+        document.getElementById('city').innerText = `${city}, ${countryInformation.name}`;
+        document.getElementById('date').innerText = date;
+        document.getElementById('currency').innerText = `You will travel to ${countryInformation.subregion}. Don't forget to have enough ${listCurrencies(countryInformation.currencies)} in your wallet!`;
     }
     document.getElementById('result').style.display = visible ? 'block' : 'none';
 }
@@ -49,6 +50,12 @@ function displayLocationImage(imageUrl) {
 }
 
 // private functions here
+
+function listCurrencies(currencies) {
+    const currenciesList = currencies.map(currency => `${currency.name}(${currency.symbol})`)
+    const result = currenciesList.join(' or ');
+    return result;
+}
 
 // exports
 module.exports.dom_setCountdown = setCountdown;
