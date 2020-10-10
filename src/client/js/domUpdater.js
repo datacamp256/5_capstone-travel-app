@@ -53,8 +53,7 @@ function displayLocationImage(imageUrl) {
 
 function listCurrencies(currencies) {
     const currenciesList = currencies.map(currency => `${currency.name}(${currency.symbol})`)
-    const result = currenciesList.join(' or ');
-    return result;
+    return currenciesList.join(' or ');
 }
 
 // exports

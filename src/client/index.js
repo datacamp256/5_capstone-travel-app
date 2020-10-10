@@ -20,7 +20,7 @@ import {
 const BUTTON_ID = 'generate';
 
 document.addEventListener('DOMContentLoaded', async function () {
-    fetcher_loadApiKeys();
+    await fetcher_loadApiKeys();
 });
 
 document.getElementById(BUTTON_ID).addEventListener('click', event => generateEntry(event));
