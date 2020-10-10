@@ -19,7 +19,7 @@ async function generateEntry(event) {
         travelDate = Client.countdown_initCountDown();
         locationProperties = await Client.fetcher_loadGeoInformation(getCityName());
         weather = await getWeatherOfTheDay(locationProperties);
-        imageUrl = await Client.fetcher_loadPixabyImageUrl([
+        imageUrl = await Client.fetcher_loadPixabayImageUrl([
             locationProperties.location,
             locationProperties.region,
             countries.getName(locationProperties.country, 'en')]);

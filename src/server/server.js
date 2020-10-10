@@ -44,8 +44,8 @@ app.get('/loadApiKey/:application?', function (request, response) {
         case 'weatherbit':
             response.send(process.env.WEATHERBIT_APIKEY);
             break;
-        case 'pixaby':
-            response.send(process.env.PIXABY_APIKEY);
+        case 'pixabay':
+            response.send(process.env.PIXABAY_APIKEY);
             break;
         default:
             console.warn(`The application "${request.query.application}" is not known.`);
@@ -55,7 +55,7 @@ app.get('/loadApiKey/:application?', function (request, response) {
 
 // Callback to debug
 function listening() {
-    ['GEONAMES_USERNAME', 'WEATHERBIT_APIKEY', 'PIXABY_APIKEY'].forEach(variable => {
+    ['GEONAMES_USERNAME', 'WEATHERBIT_APIKEY', 'PIXABAY_APIKEY'].forEach(variable => {
         if (!process.env.hasOwnProperty(variable)) {
             console.error(`ERROR: Environment variable ${variable} is missing.`);
             process.exit(1);

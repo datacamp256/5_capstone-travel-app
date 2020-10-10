@@ -1,15 +1,15 @@
 let geonamesApiKey;
 let weatherbitApiKey;
-let pixabyApiKey;
+let pixabayApiKey;
 
 //public functions here
 
 async function loadApiKeys() {
-    const promisedKeys = ['geonames', 'weatherbit','pixaby'].map(async serviceId =>
+    const promisedKeys = ['geonames', 'weatherbit','pixabay'].map(async serviceId =>
         fetch('http://localhost:8081/loadApiKey?application=' + serviceId)
             .then(response => response.text())
     );
-    [geonamesApiKey, weatherbitApiKey, pixabyApiKey] = await Promise.all(promisedKeys);
+    [geonamesApiKey, weatherbitApiKey, pixabayApiKey] = await Promise.all(promisedKeys);
 }
 
 async function loadGeoInformation(city) {
@@ -27,16 +27,16 @@ async function loadWeatherForecast(lat, lng) {
     return extractWeatherForecast(weatherbitForecast);
 }
 
-async function loadPixabyImageUrl(searchStrings) {
+async function loadPixabayImageUrl(searchStrings) {
     if (searchStrings.length === 0) {
         return 'NO_IMAGE';
     }
-    const url = createPixabyRequestAddress(searchStrings.shift());
+    const url = createPixabayRequestAddress(searchStrings.shift());
     let response = await fetch(url).then(response => response.json());
     if (response.totalHits !== 0) {
         return response.hits[Math.floor(Math.random() * response.hits.length)].webformatURL;
     } else {
-        return loadPixabyImageUrl(searchStrings);
+        return loadPixabayImageUrl(searchStrings);
     }
 }
 
@@ -70,9 +70,9 @@ function extractLocationProperties(result) {
 }
 
 
-function createPixabyRequestAddress(name) {
+function createPixabayRequestAddress(name) {
     const parameters = [
-        `key=${pixabyApiKey}`,
+        `key=${pixabayApiKey}`,
         'q=' + encodeURIComponent(name),
         // 'lang=en',
         'image_type=photo',
@@ -103,4 +103,4 @@ function createGeoInformationRequestAddress(city) {
 module.exports.fetcher_loadApiKeys = loadApiKeys;
 module.exports.fetcher_loadGeoInformation = loadGeoInformation;
 module.exports.fetcher_loadWeatherForecast = loadWeatherForecast;
-module.exports.fetcher_loadPixabyImageUrl = loadPixabyImageUrl;
+module.exports.fetcher_loadPixabayImageUrl = loadPixabayImageUrl;

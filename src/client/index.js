@@ -12,7 +12,7 @@ import {
 import {
     fetcher_loadApiKeys,
     fetcher_loadGeoInformation,
-    fetcher_loadPixabyImageUrl,
+    fetcher_loadPixabayImageUrl,
     fetcher_loadWeatherForecast
 } from './js/fetcher'
 
@@ -28,7 +28,7 @@ export {
     countdown_initCountDown,
     fetcher_loadGeoInformation,
     fetcher_loadWeatherForecast,
-    fetcher_loadPixabyImageUrl,
+    fetcher_loadPixabayImageUrl,
     dom_setCountdown,
     dom_displayError,
     dom_hideError,
