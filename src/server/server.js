@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Setup empty JS object to act as endpoint for all routes
-projectData = {entries: []};
+const projectData = {entries: []};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -56,7 +56,7 @@ app.get('/loadApiKey/:application?', function (request, response) {
 // Callback to debug
 function listening() {
     ['GEONAMES_USERNAME', 'WEATHERBIT_APIKEY', 'PIXABAY_APIKEY'].forEach(variable => {
-        if (!process.env.hasOwnProperty(variable)) {
+        if (!Object.prototype.hasOwnProperty.call(process.env, variable)) {
             console.error(`ERROR: Environment variable ${variable} is missing.`);
             process.exit(1);
         }
@@ -94,9 +94,9 @@ app.post('/entries', addEntry);
 
 function addEntry(request, response) {
     console.log(`Received Post Request ${JSON.stringify(request.body)}`);
-    if (!(request.body.hasOwnProperty('temperature') &&
-        request.body.hasOwnProperty('date') &&
-        request.body.hasOwnProperty('comment'))) {
+    if (!(Object.prototype.hasOwnProperty.call(request.body,'temperature') &&
+        Object.prototype.hasOwnProperty.call(request.body,'date') &&
+        Object.prototype.hasOwnProperty.call(request.body,'comment'))) {
         console.log(`Bad Request: ${JSON.stringify(request.body)}`)
         response.status(400).send('Request must contain json-object containing the keys "temperature", "date" and "comment".')
     } else {
