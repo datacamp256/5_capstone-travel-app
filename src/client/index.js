@@ -1,4 +1,5 @@
 import './styles/style.scss';
+// import './views/assets/images/material_io-explore_black_large.png';
 import {generateEntry} from './js/app'
 import {countdown_initCountDown} from './js/countdown';
 import {dom_displayError, dom_hideError, dom_setCountdown, dom_displayWeather,dom_displayLocationImage} from './js/domUpdater'

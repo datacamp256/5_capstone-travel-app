@@ -83,7 +83,8 @@ body {
             #weather-icon {
                 width: 2em;
             }
-            #weather-description{
+
+            #weather-description {
 
             }
         }
@@ -94,15 +95,33 @@ body {
             font-size: 20px;
             font-family: 'Oswald', sans-serif;
         }
+
         #wikipedia {
             display: none;
         }
 
-        #picture {
+        #picture-with-watermark {
             display: none;
+
+            #picture {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            #watermark {
+                position: relative;
+                height: 20px;
+                padding: 5px;
+                top: -35px;
+                left: 5px;
+                background: rgb(0, 0, 0);
+                background: rgba(255, 255, 255, 0.35); /* White see-through */
+                transition: .5s ease;
+                opacity:1;
+            }
         }
     }
-
     footer {
 
     }

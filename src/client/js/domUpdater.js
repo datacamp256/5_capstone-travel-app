@@ -30,12 +30,13 @@ function displayWeather(weather) {
 }
 
 function dom_displayLocationImage(imageUrl) {
+    let div = document.getElementById('picture-with-watermark');
     let img = document.getElementById('picture');
     if (imageUrl === 'NO_IMAGE') {
-        img.style.display = 'none';
+        div.style.display = 'none';
     } else {
         img.src = imageUrl;
-        img.style.display = 'block';
+        div.style.display = 'block';
     }
 }
 
