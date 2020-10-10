@@ -1,9 +1,20 @@
 import './styles/style.scss';
-// import './views/assets/images/material_io-explore_black_large.png';
 import {generateEntry} from './js/app'
 import {countdown_initCountDown} from './js/countdown';
-import {dom_displayError, dom_hideError, dom_setCountdown, dom_displayWeather,dom_displayLocationImage} from './js/domUpdater'
-import { fetcher_loadGeoInformation, fetcher_loadApiKeys, fetcher_loadWeatherForecast, fetcher_loadPixabyImageUrl} from './js/fetcher'
+import {
+    dom_displayError,
+    dom_displayLocationImage,
+    dom_displayWeather,
+    dom_hideError,
+    dom_setCountdown,
+    dom_updateResult
+} from './js/domUpdater'
+import {
+    fetcher_loadApiKeys,
+    fetcher_loadGeoInformation,
+    fetcher_loadPixabyImageUrl,
+    fetcher_loadWeatherForecast
+} from './js/fetcher'
 
 const BUTTON_ID = 'generate';
 
@@ -22,5 +33,6 @@ export {
     dom_displayError,
     dom_hideError,
     dom_displayWeather,
-    dom_displayLocationImage
+    dom_displayLocationImage,
+    dom_updateResult
 }

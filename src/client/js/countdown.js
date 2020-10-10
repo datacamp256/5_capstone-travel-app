@@ -14,6 +14,7 @@ function initCountDown() {
     }
     countdown = setInterval(updateCountdown, 60000);
     updateCountdown();
+    return reformattedDate;
 }
 
 // private functions here

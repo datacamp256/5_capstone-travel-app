@@ -8,13 +8,15 @@ async function getWeatherOfTheDay(locationProperties) {
 
 /* Function called by event listener */
 async function generateEntry(event) {
-    event.preventDefault();
-    Client.dom_hideError();
     let locationProperties;
+    let travelDate;
     let weather;
     let imageUrl;
+    event.preventDefault();
+
+    Client.dom_hideError();
     try {
-        Client.countdown_initCountDown();
+        travelDate = Client.countdown_initCountDown();
         locationProperties = await Client.fetcher_loadGeoInformation(getCityName());
         weather = await getWeatherOfTheDay(locationProperties);
         imageUrl = await Client.fetcher_loadPixabyImageUrl([
@@ -29,6 +31,7 @@ async function generateEntry(event) {
     console.log('app.generateEntry imageMetaData', imageUrl);
     Client.dom_displayWeather(weather);
     Client.dom_displayLocationImage(imageUrl);
+    Client.dom_updateResult(true, locationProperties.location, travelDate);
 }
 
 function getCityName() {

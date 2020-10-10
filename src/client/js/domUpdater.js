@@ -11,6 +11,14 @@ function displayError(error) {
     console.error(error);
 }
 
+function updateResult(visible, city, date) {
+    if(visible){
+        document.getElementById('city').innerText=city;
+        document.getElementById('date').innerText=date;
+    }
+    document.getElementById('result').style.display = visible ? 'block' : 'none';
+}
+
 function hideError() {
     document.getElementById('error-label').style.display = 'none';
 }
@@ -29,7 +37,7 @@ function displayWeather(weather) {
     } // else{// no weather available - keep box invisible}
 }
 
-function dom_displayLocationImage(imageUrl) {
+function displayLocationImage(imageUrl) {
     let div = document.getElementById('picture-with-watermark');
     let img = document.getElementById('picture');
     if (imageUrl === 'NO_IMAGE') {
@@ -47,4 +55,5 @@ module.exports.dom_setCountdown = setCountdown;
 module.exports.dom_displayWeather = displayWeather;
 module.exports.dom_displayError = displayError;
 module.exports.dom_hideError = hideError;
-module.exports.dom_displayLocationImage = dom_displayLocationImage;
+module.exports.dom_displayLocationImage = displayLocationImage;
+module.exports.dom_updateResult = updateResult;

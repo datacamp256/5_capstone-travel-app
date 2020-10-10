@@ -53,21 +53,22 @@ body {
         }
 
         #error-label {
-            display: block;
+            display: none;
         }
     }
 
-    header {
-        h1 { //#city
-            font-size: 36px;
+    #result {
+        display: none;
+        header {
+            h1 { //#city
+                font-size: 36px;
+            }
+
+            h2 { //#countdown
+            }
         }
 
-        h2 { //#countdown
-        }
-    }
-
-    main {
-
+        main {
         #date {
         }
 
@@ -118,12 +119,14 @@ body {
                 background: rgb(0, 0, 0);
                 background: rgba(255, 255, 255, 0.35); /* White see-through */
                 transition: .5s ease;
-                opacity:1;
+                opacity: 1;
             }
         }
     }
+
     footer {
 
+    }
     }
 }
 
