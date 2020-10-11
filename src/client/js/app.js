@@ -4,7 +4,7 @@ async function getWeatherOfTheDay(locationProperties) {
 }
 
 /* Function called by event listener */
-async function generateEntry(event) {
+async function planTravel(event) {
     let locationProperties;
     let countryInformation;
     let travelDate;
@@ -39,4 +39,4 @@ function getCityName() {
     return document.getElementById('city-input').value;
 }
 
-module.exports.app_generateEntry = generateEntry;
+module.exports.app_planTravel = planTravel;
