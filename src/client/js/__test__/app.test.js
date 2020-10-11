@@ -25,8 +25,8 @@ describe('app.js ', () => {
                 days: [{valid_date: '::wrong-date::', correct: false},
                     {valid_date: '::selected-date::', correct: true},
                     {valid_date: '::also-wrong-date::', correct: false}]
-            }
-            const locationProperties = {lat: '::lat::', lng: '::lng::'}
+            };
+            const locationProperties = {lat: '::lat::', lng: '::lng::'};
             when(clientMock.fetcher_loadWeatherForecast('::lat::', '::lng::')).thenReturn(allWeather);
             when(documentMock.getElementById('start-input')).thenReturn(dateInput);
 
