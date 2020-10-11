@@ -51,6 +51,10 @@ function displayLocationImage(imageUrl) {
     }
 }
 
+function getCityName() {
+    return document.getElementById('city-input').value;
+}
+
 // private functions here
 
 function listCurrencies(currencies) {
@@ -65,3 +69,4 @@ module.exports.dom_displayError = displayError;
 module.exports.dom_hideError = hideError;
 module.exports.dom_displayLocationImage = displayLocationImage;
 module.exports.dom_updateResult = updateResult;
+module.exports.dom_getCityName = getCityName;

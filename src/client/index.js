@@ -7,7 +7,8 @@ import {
     dom_displayWeather,
     dom_hideError,
     dom_setCountdown,
-    dom_updateResult
+    dom_updateResult,
+    dom_getCityName
 } from './js/domUpdater'
 import {
     fetcher_loadApiKeys,
@@ -34,5 +35,6 @@ export {
     dom_hideError,
     dom_displayWeather,
     dom_displayLocationImage,
-    dom_updateResult
+    dom_updateResult,
+    dom_getCityName
 }

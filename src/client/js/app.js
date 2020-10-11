@@ -15,7 +15,7 @@ async function planTravel(event) {
     Client.dom_hideError();
     try {
         travelDate = Client.countdown_initCountDown();
-        locationProperties = await Client.fetcher_loadGeoInformation(getCityName());
+        locationProperties = await Client.fetcher_loadGeoInformation(Client.dom_getCityName());
         weather = await getWeatherOfTheDay(locationProperties);
         countryInformation = await Client.fetcher_loadCountryInformation(locationProperties.country);
         imageUrl = await Client.fetcher_loadPixabayImageUrl([
@@ -35,8 +35,5 @@ async function planTravel(event) {
     Client.dom_updateResult(true, locationProperties.location, travelDate, countryInformation);
 }
 
-function getCityName() {
-    return document.getElementById('city-input').value;
-}
 
 module.exports.app_planTravel = planTravel;
