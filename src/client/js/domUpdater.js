@@ -5,6 +5,8 @@ function setCountdown(newText) {
 }
 
 function displayError(error) {
+    const resultBox = document.getElementById('result');
+    resultBox.style.display='none';
     const errorLabel = document.getElementById('error-label');
     errorLabel.innerText = error;
     errorLabel.style.display = 'block';

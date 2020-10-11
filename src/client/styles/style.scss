@@ -50,6 +50,7 @@ body {
         }
 
         #error-label {
+            grid-area: error;
             font-weight: bolder;
             font-size: 1.2em;
             margin: 1em 0;
@@ -195,7 +196,8 @@ body {
         column-gap: 1em;
         grid-template-areas:
                 "city date"
-                "startbutton startbutton";
+                "startbutton startbutton"
+                "error error";
 
         .form-pair {
             input {
