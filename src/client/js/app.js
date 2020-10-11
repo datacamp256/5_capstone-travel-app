@@ -29,7 +29,7 @@ async function generateEntry(event) {
     // console.log('app.generateEntry locationProperties', locationProperties);
     // console.log('app.generateEntry weather', weather);
     // console.log('app.generateEntry imageMetaData', imageUrl);
-    console.log('app.generateEntry countryInformation', countryInformation);
+    // console.log('app.generateEntry countryInformation', countryInformation);
     Client.dom_displayWeather(weather);
     Client.dom_displayLocationImage(imageUrl);
     Client.dom_updateResult(true, locationProperties.location, travelDate, countryInformation);
