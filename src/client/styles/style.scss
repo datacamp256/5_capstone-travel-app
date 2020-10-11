@@ -25,6 +25,10 @@ body {
                 font-size: 20px;
                 font-family: 'Raleway', sans-serif;
             }
+
+            input:hover {
+                background: #8a8a8a;
+            }
         }
 
         #city-pair {
@@ -40,6 +44,9 @@ body {
             width: 102%;
             font-family: 'Raleway', sans-serif;
             grid-area: startbutton;
+        }
+        button:hover{
+            background: #8a8a8a;
         }
 
         #error-label {
