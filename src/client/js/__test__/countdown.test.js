@@ -6,7 +6,7 @@ const rewire = require('rewire');
 const sut = rewire('../countdown.js');
 
 
-describe('initCountDown in app.js ', () => {
+describe('initCountDown in countdown.js ', () => {
     const initCountDown = sut.__get__('initCountDown');
     const documentMock = mock();
     const dateInput = document.createElement('input');
