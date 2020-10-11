@@ -8,11 +8,11 @@
 </head>
 <body>
 <form class="holder">
-  <div class="form-pair">
+  <div class="form-pair" id="city-pair">
     <label for="city-input">Where do you want to go?</label>
     <input id="city-input" placeholder="Enter a city here" type="text" value="San Francisco">
   </div>
-  <div class="form-pair">
+  <div class="form-pair" id="date-pair">
     <label for="start-input">Start date:</label>
     <input type="date" id="start-input" name="trip-start" placeholder="yyyy-mm-dd" value="2020-10-14">
   </div>
@@ -24,7 +24,6 @@
     <h1><img id="flag" src="https://restcountries.eu/data/usa.svg" alt="Country flag"/><span id="city">Lorem ipsum dolor sit amet, consectetur.</span>
     </h1>
     <h2 id="countdown">202 years to go</h2>
-    <span id="currency">You will travel to Northern America. Don't forget to have enough United States dollar($) in your wallet!</span>
   </header>
   <main>
     <div id="weather-box">
@@ -38,6 +37,8 @@
         <img src="assets/images/Font_Awesome_5_solid_umbrella.svg" alt="Probability of Precipitation"/><span id="pop">37 %</span>
       </div>
     </div>
+    <span id="currency">You will travel to Northern America. Don't forget to have enough United States dollar($) in your wallet!</span>
+
     <div id="picture-with-watermark">
       <img id="picture" src="assets/images/pixabay-logo.svg" alt="Picture of the destination"/>
       <img id="watermark" src="assets/images/pixabay-logo.svg" alt="This picture was received from pixabay.com"/>

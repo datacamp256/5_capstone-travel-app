@@ -25,19 +25,21 @@ body {
                 font-size: 20px;
                 font-family: 'Raleway', sans-serif;
             }
+        }
 
-            #city-input {
-            }
+        #city-pair {
+            grid-area: city;
+        }
 
-            #start-input {
-            }
-
+        #start-pair {
+            grid-area: date;
         }
 
         button { //generate
             font-size: 26px;
             width: 102%;
             font-family: 'Raleway', sans-serif;
+            grid-area: startbutton;
         }
 
         #error-label {
@@ -90,7 +92,8 @@ body {
         main {
 
             #weather-box {
-                padding-top: 1em;
+                padding-top: 0;
+                padding-bottom: 1em;
                 display: grid;
                 width: 100%;
                 grid-template-columns: max-content 1fr;
@@ -178,7 +181,22 @@ body {
     }
 }
 
+@media only screen and (min-width: 600px) {
+    .holder {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 1em;
+        grid-template-areas:
+                "city date"
+                "startbutton startbutton";
 
+        .form-pair {
+            input {
+                height: 2.2em;
+            }
+        }
+    }
+}
 
 /* Reset style for HTML element on active to have no border*/
 input:focus,
