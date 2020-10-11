@@ -34,7 +34,7 @@ function displayWeather(weather) {
         document.getElementById('weather-description').innerText = weather.description;
         document.getElementById('temperature').innerText = weather.temp + ' °C';
         document.getElementById('pop').innerText = weather.probability_of_precipitation + ' %';
-        div.style.display = 'block';
+        div.style.display = 'grid';
     } // else{// no weather available - keep box invisible}
 }
 

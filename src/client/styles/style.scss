@@ -1,36 +1,29 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height: 100vh;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(31, 153, 177, 0.68);
 
     form { //.holder
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin: 1em;
+
         label {
             display: block;
-            font-size: 27px;
         }
 
         .form-pair {
+            margin: 0.5em 0;
+
             label {
             }
 
             input {
                 display: block;
-                height: 60px;
-                width: 320px;
-                background: #22b2da;
-                color: #f0d43a;
+                width: 100%;
                 font-size: 20px;
-                font-family: 'Oswald', sans-serif;
-                border: none;
+                font-family: 'Raleway', sans-serif;
             }
 
             #city-input {
@@ -42,17 +35,19 @@ body {
         }
 
         button { //generate
-            width: 400px;
-            height: 2em;
-            background: #3b4a6b;
-            color: #f0d43a;
             font-size: 26px;
-            font-family: 'Oswald', sans-serif;
-            border: none;
-            box-shadow: 2px 4px 5px #444;
+            width: 102%;
+            font-family: 'Raleway', sans-serif;
         }
 
         #error-label {
+            font-weight: bolder;
+            font-size: 1.2em;
+            margin: 1em 0;
+            padding: 0.2em 1em;
+            width: 90%;
+            color: rgb(192, 193, 181);
+            background: rgb(233, 67, 67);
             display: none;
         }
     }
@@ -60,41 +55,91 @@ body {
     #result {
         display: none;
         header {
+            h1 h2 {
+                font-family: 'Bebas Neue', sans-serif;
+            }
+
             h1 { //#city
+                font-family: 'Bebas Neue', sans-serif;
+                text-indent: -1.1em;
+                margin-left: 1.1em;
+                margin-bottom: 0;
                 font-size: 36px;
-                #flag{
-                   height: 0.5em;
+
+                #flag {
+                    height: 0.5em;
                     vertical-align: 0.3em;
                     margin-right: 0.2em;
                 }
-                #city{}
+
+                #city {
+                }
             }
 
             h2 { //#countdown
+                font-family: 'Bebas Neue', sans-serif;
+                font-size: 30px;
+                margin-top: 0;
+                margin-bottom: 0.5em;
+            }
+
+            #currency {
             }
         }
 
         main {
-        #date {
-        }
 
-        #weather-box {
-            img { //#weather-icon and umbrella
-                width: 1em;
-                margin-right: 0.5em;
+            #weather-box {
+                padding-top: 1em;
+                display: grid;
+                width: 100%;
+                grid-template-columns: max-content 1fr;
+                grid-template-areas:
+                        "date icon-and-temperature"
+                        "description pop-box";
+
+                //* {
+                //
+                //    border: black;
+                //    border-width: 1px;
+                //    border-style: dotted;
+                //}
+
+                #date {
+                    grid-area: date;
+                }
+
+                #icon-and-temperature {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    grid-template-areas: "icon temperature";
+                    grid-area: icon-and-temperature;
+                    justify-self: right;
+
+                    #weather-icon {
+                        grid-area: icon;
+                        width: 2em;
+                    }
+
+                    #temperature {
+                        grid-area: temperature;
+                    }
+                }
+
+                #weather-description {
+                    grid-area: description;
+                }
+
+                #pop-box {
+                    justify-self: right;
+                    grid-area: pop-box;
+                }
+
+                img { //#weather-icon and umbrella
+                    width: 1em;
+                    margin-right: 0.5em;
+                }
             }
-
-            #temperature {
-            }
-
-            #weather-icon {
-                width: 2em;
-            }
-
-            #weather-description {
-
-            }
-        }
 
         textarea {
             background: #22b2da;
@@ -103,12 +148,9 @@ body {
             font-family: 'Oswald', sans-serif;
         }
 
-        #wikipedia {
-            display: none;
-        }
-
         #picture-with-watermark {
             display: none;
+            margin-top: 1em;
 
             #picture {
                 display: block;
@@ -143,7 +185,7 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+    //outline: none;
 }
 
 /* Style for Placeholder Text*/
