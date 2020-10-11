@@ -39,4 +39,4 @@ function getCityName() {
     return document.getElementById('city-input').value;
 }
 
-module.exports.generateEntry = generateEntry;
+module.exports.app_generateEntry = generateEntry;

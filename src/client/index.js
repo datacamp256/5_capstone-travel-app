@@ -1,5 +1,5 @@
 import './styles/style.scss';
-import {generateEntry} from './js/app'
+import {app_generateEntry} from './js/app'
 import {countdown_initCountDown} from './js/countdown';
 import {
     dom_displayError,
@@ -21,7 +21,7 @@ const BUTTON_ID = 'generate';
 
 document.addEventListener('DOMContentLoaded', async () => await fetcher_loadApiKeys());
 
-document.getElementById(BUTTON_ID).addEventListener('click', event => generateEntry(event));
+document.getElementById(BUTTON_ID).addEventListener('click', event => app_generateEntry(event));
 
 export {
     countdown_initCountDown,
