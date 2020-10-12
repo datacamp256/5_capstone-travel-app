@@ -37,7 +37,7 @@ function displayWeather(weather) {
         document.getElementById('temperature').innerText = weather.temp + ' °C';
         document.getElementById('pop').innerText = weather.probability_of_precipitation + ' %';
         div.style.display = 'grid';
-    } // else{// no weather available - keep box invisible}
+    } //if no weather is available we keep the box invisible
 }
 
 function displayLocationImage(imageUrl) {
