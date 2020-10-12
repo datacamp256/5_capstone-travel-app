@@ -42,10 +42,7 @@ async function loadPixabayImageUrl(searchStrings) {
     }
 }
 
-
-// private functions here
-
-function extractWeatherForecast(weatherbitForecast) {
+const extractWeatherForecast = weatherbitForecast => {
     const forecasts = {days: []};
     weatherbitForecast.data.forEach(day => {
         forecasts.days.push({
@@ -59,9 +56,9 @@ function extractWeatherForecast(weatherbitForecast) {
         })
     });
     return forecasts;
-}
+};
 
-function extractLocationProperties(postalCodes, cityName) {
+const extractLocationProperties = (postalCodes, cityName) => {
     if (postalCodes.length === 0) {
         throw `Could not find a city with the name '${cityName}'`;
     }
@@ -77,10 +74,9 @@ function extractLocationProperties(postalCodes, cityName) {
         lng: postalCodes[0].lng,
         lat: postalCodes[0].lat
     };
-}
+};
 
-
-function createPixabayRequestAddress(name) {
+const createPixabayRequestAddress = name => {
     const parameters = [
         `key=${pixabayApiKey}`,
         'q=' + encodeURIComponent(name),
@@ -94,9 +90,9 @@ function createPixabayRequestAddress(name) {
         'pretty=false'
     ];
     return 'https://pixabay.com/api/?' + parameters.join('&');
-}
+};
 
-function createGeoInformationRequestAddress(city) {
+const createGeoInformationRequestAddress = city => {
     const parameters = [
         `username=${geonamesApiKey}`,
         `placename=${encodeURIComponent(city)}`,
@@ -107,7 +103,8 @@ function createGeoInformationRequestAddress(city) {
         'countryBias=IN',
     ];
     return 'http://api.geonames.org/postalCodeSearchJSON?' + parameters.join('&');
-}
+};
+
 
 // exports
 module.exports.fetcher_loadApiKeys = loadApiKeys;
