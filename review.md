@@ -13,8 +13,11 @@ I have implemented the suggestions. I have two or three comments on this.
 ### src/client/js/fetcher.js 2
 #### Using axios instead of fetch
 In our team we're using wretcher, which is - as my colleague says - quite similar. I wanted to stay as close at the course as possible.
-When I find the time, I will switch the 'library'.
+
+For timing reasons (project has to be complete until Oct 14th) I will not add Axios in this submission but I give it a try now - in case there will be new findings in the second review.
 
 ### src/client/views/index.html 
 The script tag. THAT was the missing link!!! Thank you!!
 
+Best regards,
+brian
