@@ -4,32 +4,32 @@ let pixabayApiKey;
 
 //public functions here
 
-async function loadApiKeys() {
-    const promisedKeys = ['geonames', 'weatherbit','pixabay'].map(async serviceId =>
+const loadApiKeys = async () => {
+    const promisedKeys = ['geonames', 'weatherbit', 'pixabay'].map(async serviceId =>
         fetch('http://localhost:8081/loadApiKey?application=' + serviceId)
             .then(response => response.text())
     );
     [geonamesApiKey, weatherbitApiKey, pixabayApiKey] = await Promise.all(promisedKeys);
 }
 
-async function loadGeoInformation(city) {
+const loadGeoInformation = async city => {
     const url = createGeoInformationRequestAddress(city);
     const result = await fetch(url).then(response => response.json());
     return extractLocationProperties(result.postalCodes, city);
 }
 
-async function loadWeatherForecast(lat, lng) {
+const loadWeatherForecast = async (lat, lng) => {
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${weatherbitApiKey}&lat=${lat}&lon=${lng}`;
     const weatherbitForecast = await fetch(url).then(response => response.json());
     return extractWeatherForecast(weatherbitForecast);
 }
 
-async function loadCountryInformation(countryCode) {
+const loadCountryInformation = async (countryCode) => {
     const url = `https://restcountries.eu/rest/v2/alpha/${countryCode}?fields=name;subregion;currencies;flag`;
     return await fetch(url).then(response => response.json());
 }
 
-async function loadPixabayImageUrl(searchStrings) {
+const loadPixabayImageUrl = async (searchStrings) => {
     if (searchStrings.length === 0) {
         return 'NO_IMAGE';
     }
@@ -42,6 +42,7 @@ async function loadPixabayImageUrl(searchStrings) {
     }
 }
 
+//private functions below here
 const extractWeatherForecast = weatherbitForecast => {
     const forecasts = {days: []};
     weatherbitForecast.data.forEach(day => {

@@ -1,6 +1,6 @@
 //public functions here
 
-function setCountdown(newText) {
+const setCountdown = newText => {
     document.getElementById('countdown').innerText = newText;
 }
 
@@ -13,7 +13,7 @@ function displayError(error) {
     console.error(error);
 }
 
-function updateResult(visible, city, date, countryInformation) {
+const updateResult = (visible, city, date, countryInformation) => {
     if (visible) {
         document.getElementById('city').innerText = `${city}, ${countryInformation.name}`;
         document.getElementById('date').innerText = date;
@@ -22,11 +22,11 @@ function updateResult(visible, city, date, countryInformation) {
     document.getElementById('result').style.display = visible ? 'block' : 'none';
 }
 
-function hideError() {
+const hideError = () => {
     document.getElementById('error-label').style.display = 'none';
 }
 
-function displayWeather(weather) {
+const displayWeather = weather => {
     const div = document.getElementById('weather-box');
     div.style.display = 'none';
     if (weather) {
@@ -40,7 +40,7 @@ function displayWeather(weather) {
     } //if no weather is available we keep the box invisible
 }
 
-function displayLocationImage(imageUrl) {
+const displayLocationImage = imageUrl => {
     let div = document.getElementById('picture-with-watermark');
     let img = document.getElementById('picture');
     if (imageUrl === 'NO_IMAGE') {
@@ -51,13 +51,13 @@ function displayLocationImage(imageUrl) {
     }
 }
 
-function getCityName() {
+const getCityName = () => {
     return document.getElementById('city-input').value;
 }
 
 // private functions here
 
-function listCurrencies(currencies) {
+const listCurrencies = currencies => {
     const currenciesList = currencies.map(currency => `${currency.name}(${currency.symbol})`)
     return currenciesList.join(' or ');
 }

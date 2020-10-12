@@ -23,13 +23,19 @@ app.use(express.static('website'));
 
 const port = 8081;
 
+const listening = () => {
+    ['GEONAMES_USERNAME', 'WEATHERBIT_APIKEY', 'PIXABAY_APIKEY'].forEach(variable => {
+        if (!Object.prototype.hasOwnProperty.call(process.env, variable)) {
+            console.error(`ERROR: Environment variable ${variable} is missing.`);
+            process.exit(1);
+        }
+    });
+}
+
 // Setup Server
 app.listen(port, listening);
 
-//endpoint for api-key
-app.get('/loadApiKey/:application?', loadApiKey);
-
-function loadApiKey(request, response) {
+const loadApiKey = (request, response) => {
     response.type('text/plain')
     const requestedApplication = request.query.application;
     if (!requestedApplication) {
@@ -52,15 +58,9 @@ function loadApiKey(request, response) {
             response.status(400).send(`The application "${requestedApplication}" is not known.`);
     }
 }
+//endpoint for api-key
+app.get('/loadApiKey/:application?', loadApiKey);
 
-// Callback to debug
-function listening() {
-    ['GEONAMES_USERNAME', 'WEATHERBIT_APIKEY', 'PIXABAY_APIKEY'].forEach(variable => {
-        if (!Object.prototype.hasOwnProperty.call(process.env, variable)) {
-            console.error(`ERROR: Environment variable ${variable} is missing.`);
-            process.exit(1);
-        }
-    });
-}
+
 
 module.exports.loadApiKey = loadApiKey;

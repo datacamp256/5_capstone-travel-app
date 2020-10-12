@@ -1,10 +1,10 @@
-async function getWeatherOfTheDay(locationProperties) {
+const getWeatherOfTheDay = async locationProperties => {
     const allWeather = await Client.fetcher_loadWeatherForecast(locationProperties.lat, locationProperties.lng);
     return allWeather.days.filter(day => day.valid_date === document.getElementById('start-input').value).shift();
 }
 
 /* Function called by event listener */
-async function planTravel(event) {
+const planTravel = async event => {
     let locationProperties;
     let countryInformation;
     let travelDate;
